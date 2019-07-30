@@ -16,5 +16,22 @@ namespace COMP123_S2019_Assignment5
         {
             InitializeComponent();
         }
+
+        private void NewOrderButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.selectForm.Show();
+        }
+
+        private void LoadOrderButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.productInfoForm.Show();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

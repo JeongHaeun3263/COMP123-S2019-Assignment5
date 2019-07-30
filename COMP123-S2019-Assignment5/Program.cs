@@ -1,4 +1,6 @@
-﻿using System;
+﻿using COMP123_S2019_Assignment5.Data;
+using COMP123_S2019_Assignment5.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +8,9 @@ using System.Windows.Forms;
 
 namespace COMP123_S2019_Assignment5
 {
-    static class Program
+    public static class Program
     {
+        public static Product product;
         public static SplashScreen splashScreen;
         public static StartForm startForm;
         public static SelectForm selectForm;
@@ -22,6 +25,9 @@ namespace COMP123_S2019_Assignment5
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // now we have access container
+            product = new Product();
 
             splashScreen = new SplashScreen();
             startForm = new StartForm();

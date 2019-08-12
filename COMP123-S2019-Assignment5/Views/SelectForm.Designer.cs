@@ -67,6 +67,7 @@
             this.SelectTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.NextButton = new System.Windows.Forms.Button();
+            this.SelectLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dollarComputersDataSet)).BeginInit();
@@ -123,6 +124,7 @@
             this.ProductsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductsDataGridView.Size = new System.Drawing.Size(776, 336);
             this.ProductsDataGridView.TabIndex = 0;
+            this.ProductsDataGridView.SelectionChanged += new System.EventHandler(this.ProductsDataGridView_SelectionChanged);
             // 
             // productIDDataGridViewTextBoxColumn
             // 
@@ -387,11 +389,12 @@
             // 
             // SelectTextBox
             // 
-            this.SelectTextBox.Location = new System.Drawing.Point(12, 400);
+            this.SelectTextBox.Location = new System.Drawing.Point(146, 400);
             this.SelectTextBox.Name = "SelectTextBox";
             this.SelectTextBox.ReadOnly = true;
-            this.SelectTextBox.Size = new System.Drawing.Size(604, 25);
+            this.SelectTextBox.Size = new System.Drawing.Size(470, 25);
             this.SelectTextBox.TabIndex = 1;
+            this.SelectTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // CancelButton
             // 
@@ -413,12 +416,23 @@
             this.NextButton.UseVisualStyleBackColor = true;
             this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
+            // SelectLabel
+            // 
+            this.SelectLabel.AutoSize = true;
+            this.SelectLabel.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SelectLabel.Location = new System.Drawing.Point(12, 403);
+            this.SelectLabel.Name = "SelectLabel";
+            this.SelectLabel.Size = new System.Drawing.Size(128, 17);
+            this.SelectLabel.TabIndex = 3;
+            this.SelectLabel.Text = "Your Selection";
+            // 
             // SelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.SelectLabel);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SelectTextBox);
@@ -475,5 +489,6 @@
         private System.Windows.Forms.TextBox SelectTextBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button NextButton;
+        private System.Windows.Forms.Label SelectLabel;
     }
 }

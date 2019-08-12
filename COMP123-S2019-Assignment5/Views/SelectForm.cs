@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,6 @@ namespace COMP123_S2019_Assignment5.Views
         {
             // TODO: This line of code loads data into the 'dollarComputersDataSet.products' table. You can move, or remove it, as needed.
             this.productsTableAdapter.Fill(this.dollarComputersDataSet.products);
-            // TODO: This line of code loads data into the 'dollarComputersDataSet.products' table. You can move, or remove it, as needed.
-            this.productsTableAdapter.Fill(this.dollarComputersDataSet.products);
 
         }
 
@@ -36,5 +35,29 @@ namespace COMP123_S2019_Assignment5.Views
             Program.productInfoForm.Show();
             this.Hide();
         }
+
+        
+        private void ProductsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            var currentCell = ProductsDataGridView.CurrentCell;
+            int rowIndex = ProductsDataGridView.CurrentCell.RowIndex; 
+            var currentRow = ProductsDataGridView.Rows[rowIndex];
+            var columnCount = ProductsDataGridView.ColumnCount;
+            var cells = currentRow.Cells;
+
+            //currentRow.Selected = true;
+
+            string outputString = string.Empty;
+
+            for (int index = 0; index < columnCount; index++)
+            {
+                outputString += cells[index].Value + " ";
+            }
+
+            SelectTextBox.Text = outputString;
+
+
+        }
+        
     }
 }

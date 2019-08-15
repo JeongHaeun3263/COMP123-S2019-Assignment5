@@ -395,6 +395,7 @@
             this.SelectTextBox.Size = new System.Drawing.Size(470, 25);
             this.SelectTextBox.TabIndex = 1;
             this.SelectTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SelectTextBox.TextChanged += new System.EventHandler(this.SelectTextBox_TextChanged);
             // 
             // CancelButton
             // 

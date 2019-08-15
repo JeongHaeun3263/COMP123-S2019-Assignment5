@@ -28,11 +28,10 @@ namespace COMP123_S2019_Assignment5
 
             // now we have access container
             product = new Product();
-
+            productInfoForm = new ProductInfoForm();
             splashScreen = new SplashScreen();
             startForm = new StartForm();
             selectForm = new SelectForm();
-            productInfoForm = new ProductInfoForm();
             orderForm = new OrderForm();
 
             Application.Run(splashScreen);

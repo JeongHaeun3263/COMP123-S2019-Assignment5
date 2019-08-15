@@ -13,6 +13,10 @@ namespace COMP123_S2019_Assignment5.Views
 {
     public partial class SelectForm : Form
     {
+        int rowIndex;
+        int columnCount;
+        DataGridViewRow currentRow;
+        DataGridViewCellCollection cells;
         public SelectForm()
         {
             InitializeComponent();
@@ -22,6 +26,7 @@ namespace COMP123_S2019_Assignment5.Views
         {
             // TODO: This line of code loads data into the 'dollarComputersDataSet.products' table. You can move, or remove it, as needed.
             this.productsTableAdapter.Fill(this.dollarComputersDataSet.products);
+            NextButton.Enabled = false;
 
         }
 
@@ -32,32 +37,48 @@ namespace COMP123_S2019_Assignment5.Views
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            
             Program.productInfoForm.Show();
+            Program.productInfoForm.LoadData(cells);
             this.Hide();
         }
 
         
         private void ProductsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var currentCell = ProductsDataGridView.CurrentCell;
-            int rowIndex = ProductsDataGridView.CurrentCell.RowIndex; 
-            var currentRow = ProductsDataGridView.Rows[rowIndex];
-            var columnCount = ProductsDataGridView.ColumnCount;
-            var cells = currentRow.Cells;
+            //var currentCell = ProductsDataGridView.CurrentCell;
+            rowIndex = ProductsDataGridView.CurrentCell.RowIndex; 
+            currentRow = ProductsDataGridView.Rows[rowIndex];
+            columnCount = ProductsDataGridView.ColumnCount;
+            cells = currentRow.Cells;
 
             //currentRow.Selected = true;
 
             string outputString = string.Empty;
 
-            for (int index = 0; index < columnCount; index++)
+            //for (int index = 0; index < columnCount; index++)
+            //{
+            //    outputString += cells[index].Value + " ";
+            //}
+
+            //SelectTextBox.Text = outputString;
+
+            if (double.TryParse(cells[1].Value.ToString(), out double cost))
             {
-                outputString += cells[index].Value + " ";
+                SelectTextBox.Text = cells[2].Value + "  " + cells[3].Value + "  " + cost.ToString("C");
+            }
+            else
+            {
+                SelectTextBox.Text = cells[2].Value + "  " + cells[3].Value + "  " + cells[1].Value;
             }
 
-            SelectTextBox.Text = outputString;
+            NextButton.Enabled = true;
+            
+        }
 
+        private void SelectTextBox_TextChanged(object sender, EventArgs e)
+        {
 
         }
-        
     }
 }

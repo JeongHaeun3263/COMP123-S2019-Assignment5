@@ -16,6 +16,7 @@ namespace COMP123_S2019_Assignment5
         public static SelectForm selectForm;
         public static ProductInfoForm productInfoForm;
         public static OrderForm orderForm;
+        public static DollarComputersAboutBox dollarComputersAboutBox;
 
         /// <summary>
         /// The main entry point for the application.
@@ -33,6 +34,7 @@ namespace COMP123_S2019_Assignment5
             startForm = new StartForm();
             selectForm = new SelectForm();
             orderForm = new OrderForm();
+            dollarComputersAboutBox = new DollarComputersAboutBox();
 
             Application.Run(splashScreen);
         }

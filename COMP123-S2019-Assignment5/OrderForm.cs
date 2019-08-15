@@ -67,11 +67,7 @@ namespace COMP123_S2019_Assignment5
                 PriceButton.Text = cost.ToString("C");
                 SalesTaxButton.Text = (cost*0.13).ToString("C");
                 TotalButton.Text = (cost + (cost * 0.13)).ToString("C");
-            }
-            
-
-            //double.TryParse(cells[1].Value.ToString(), out double cost);
-            
+            }                      
 
         }
 
@@ -94,6 +90,11 @@ namespace COMP123_S2019_Assignment5
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You selected printing information", "notice", MessageBoxButtons.OK);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dollarComputersAboutBox.ShowDialog();
         }
     }
 }

@@ -57,6 +57,12 @@
   <ItemGroup>
     <Compile Include="Data\Product.cs" />
     <Compile Include="Data\ProductModel.cs" />
+    <Compile Include="DollarComputersAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DollarComputersAboutBox.Designer.cs">
+      <DependentUpon>DollarComputersAboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="DollarComputersDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +100,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DollarComputersAboutBox.resx">
+      <DependentUpon>DollarComputersAboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>

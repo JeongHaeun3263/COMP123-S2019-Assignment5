@@ -8,7 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * STUDENT NAME: Haeun Jeong
+ * STUDENT NUMBER: 301004579
+ * Description: This is a select form to select product from database
+ * Date: 16th August
+ */
 namespace COMP123_S2019_Assignment5.Views
 {
     public partial class SelectForm : Form
@@ -36,15 +41,18 @@ namespace COMP123_S2019_Assignment5.Views
         }
 
         private void NextButton_Click(object sender, EventArgs e)
-        {
-            
+        {           
             Program.productInfoForm.Show();
             Program.productInfoForm.LoadData(cells);
             this.Hide();
         }
 
-        
-        private void ProductsDataGridView_SelectionChanged(object sender, EventArgs e)
+        /// <summary>
+        /// This is a method that show the product information that use choose 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void ProductsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             //var currentCell = ProductsDataGridView.CurrentCell;
             rowIndex = ProductsDataGridView.CurrentCell.RowIndex; 
@@ -52,16 +60,16 @@ namespace COMP123_S2019_Assignment5.Views
             columnCount = ProductsDataGridView.ColumnCount;
             cells = currentRow.Cells;
 
-            //currentRow.Selected = true;
+            currentRow.Selected = true;
 
             string outputString = string.Empty;
 
-            //for (int index = 0; index < columnCount; index++)
-            //{
-            //    outputString += cells[index].Value + " ";
-            //}
+            for (int index = 0; index < columnCount; index++)
+            {
+                outputString += cells[index].Value + " ";
+            }
 
-            //SelectTextBox.Text = outputString;
+            SelectTextBox.Text = outputString;
 
             if (double.TryParse(cells[1].Value.ToString(), out double cost))
             {
@@ -77,6 +85,11 @@ namespace COMP123_S2019_Assignment5.Views
         }
 
         private void SelectTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

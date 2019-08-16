@@ -7,12 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Web.Script.Serialization;
+using System.Diagnostics;
+using COMP123_S2019_Assignment5.Data;
+using COMP123_S2019_Assignment5.DollarComputersDataSetTableAdapters;
+using COMP123_S2019_Assignment5.Properties;
+using COMP123_S2019_Assignment5.Views;
+/*
+ * STUDENT NAME: Haeun Jeong
+ * STUDENT NUMBER: 301004579
+ * Description: This is a product info form to load the product information that user select
+ * Date: 16th August
+ */
 namespace COMP123_S2019_Assignment5
 {
     public partial class ProductInfoForm : Form
     {
         DataGridViewCellCollection cells;
+
+        public object ProductDataGridView { get; private set; }
+        public object ProductSaveFileDialog { get; private set; }
+        public object ProductOpenFileDialog { get; private set; }
+        public string FileName { get; set; }
+
+
         public ProductInfoForm()
         {
             InitializeComponent();
@@ -46,13 +65,16 @@ namespace COMP123_S2019_Assignment5
         {
             LoadProductInfo(cells);
         }
-
+        /// <summary>
+        /// This is a method that load product information
+        /// </summary>
+        /// <param name="cells"></param>
         public void LoadProductInfo(DataGridViewCellCollection cells)
         {
             this.cells = cells;
             this.ProductIDButton.Text = cells[0].Value.ToString();
             this.ConditionButton.Text = cells[14].Value.ToString();
-            //this.CostButton.Text = cells[1].Value.ToString();
+            this.CostButton.Text = cells[1].Value.ToString();
             this.PlatformButton.Text = cells[16].Value.ToString();
             this.OSButton.Text = cells[15].Value.ToString();
             this.ManufacturerButton.Text = cells[2].Value.ToString();
@@ -75,19 +97,22 @@ namespace COMP123_S2019_Assignment5
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Stream myStream;
+            //SaveFileDialog ProductOpenFileDialog = new OpenFileDialog();
+
             //// configure the file dialog
-            //CharacterOpenFileDialog.FileName = "Chracter.txt";
-            //CharacterOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            //CharacterOpenFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
+            //ProductOpenFileDialog.FileName = "Product.txt";
+            //ProductOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            //ProductOpenFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
 
             //// open the file dialog
-            //var result = CharacterOpenFileDialog.ShowDialog();
+            //var result = ProductOpenFileDialog.ShowDialog();
             //if (result != DialogResult.Cancel)
             //{
             //    try
             //    {
             //        using (StreamReader inputString = new StreamReader(
-            //                       File.Open(CharacterOpenFileDialog.FileName, FileMode.Open)))
+            //                       File.Open(ProductOpenFileDialog.FileName, FileMode.Open)))
             //        {
             //            //inputString.ReadLine(character.Identity.FirstName);
             //        }
@@ -101,37 +126,38 @@ namespace COMP123_S2019_Assignment5
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //// configure the file dialog
-            //CharacterSaveFileDialog.FileName = "Chracter.txt";
-            //CharacterOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            //CharacterSaveFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
+            //Stream myStream;
+            SaveFileDialog ProductSaveFileDialog = new SaveFileDialog();
 
-            //// open the file dialog
-            //var result = CharacterSaveFileDialog.ShowDialog();
-            //if (result != DialogResult.Cancel)
-            //{
-            //    try
-            //    {
-            //        using (StreamWriter outputString = new StreamWriter(
-            //   File.Open("Character.txt", FileMode.Create)))
-            //        {
-            //            outputString.WriteLine(Program.character.Identity.FirstName);
-            //            outputString.WriteLine(Program.character.Identity.LastName);
+            // configure the file dialog
+            ProductSaveFileDialog.FileName = "Product.txt";
+            ProductSaveFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            ProductSaveFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
 
+            // open the file dialog
+            var result = ProductSaveFileDialog.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                try
+                {
+                    using (StreamWriter outputString = new StreamWriter(
+               File.Open("Product.txt", FileMode.Create)))
+                    {
+                        outputString.WriteLine(Program.product.productID.ToString());
+                        outputString.WriteLine(Program.product.cost);
+                        outputString.Close();
+                        outputString.Dispose();
+                    }
 
-            //            outputString.Close();
-            //            outputString.Dispose();
-            //        }
+                    MessageBox.Show("File Saved Successfully!", "Saving file...",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (IOException exception)
+                {
+                    Debug.WriteLine("ERROR: " + exception.Message);
+                }
 
-            //        MessageBox.Show("File Saved Successfully!", "Saving file...",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    catch (IOException exception)
-            //    {
-            //        Debug.WriteLine("ERROR: " + exception.Message);
-            //    }
-
-            //}
+            }
         }
     }
 }

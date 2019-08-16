@@ -7,7 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * STUDENT NAME: Haeun Jeong
+ * STUDENT NUMBER: 301004579
+ * Description: This is a order form to load the product information that user select. And calculate the total price. 
+ * Date: 16th August
+ */
 namespace COMP123_S2019_Assignment5
 {
     public partial class OrderForm : Form
@@ -43,8 +48,25 @@ namespace COMP123_S2019_Assignment5
 
         internal void LoadData(DataGridViewCellCollection cells)
         {
-            this.cells = cells;
+            LoadDataIntoOrderForm(cells);
 
+            PriceButton.Text = cells[1].Value.ToString();
+
+            if (double.TryParse(cells[1].Value.ToString(), out double cost))
+            {
+                PriceButton.Text = cost.ToString("C");
+                SalesTaxButton.Text = (cost * 0.13).ToString("C");
+                TotalButton.Text = (cost + (cost * 0.13)).ToString("C");
+            }
+
+        }
+        /// <summary>
+        /// This is a method that load product information 
+        /// </summary>
+        /// <param name="cells"></param>
+        private void LoadDataIntoOrderForm(DataGridViewCellCollection cells)
+        {
+            this.cells = cells;
             this.ConditionButton.Text = cells[14].Value.ToString();
             this.PlatformButton.Text = cells[16].Value.ToString();
             this.OSButton.Text = cells[15].Value.ToString();
@@ -59,28 +81,8 @@ namespace COMP123_S2019_Assignment5
             this.CPUTypeButton.Text = cells[11].Value.ToString();
             this.CPUSpeedButton.Text = cells[13].Value.ToString();
             this.WebCamButton.Text = cells[30].Value.ToString();
-
-            PriceButton.Text = cells[1].Value.ToString();
-
-            if (double.TryParse(cells[1].Value.ToString(), out double cost))
-            {
-                PriceButton.Text = cost.ToString("C");
-                SalesTaxButton.Text = (cost*0.13).ToString("C");
-                TotalButton.Text = (cost + (cost * 0.13)).ToString("C");
-            }                      
-
         }
 
-        //private void LoadProductInfo()
-        //{
-        //    throw new NotImplementedException();
-
-        //}
-
-        //private void LoadProductInfo(DataGridViewCellCollection cells)
-        //{
-
-        //}
 
         private void MessageBoxButtons_Click(object sender, EventArgs e)
         {
@@ -95,6 +97,12 @@ namespace COMP123_S2019_Assignment5
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.dollarComputersAboutBox.ShowDialog();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.productInfoForm.Show();
         }
     }
 }

@@ -136,6 +136,7 @@
             this.backToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.backToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.backToolStripMenuItem.Text = "&Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.button1_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -150,7 +151,7 @@
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -295,7 +296,7 @@
             // ModelButton
             // 
             this.ModelButton.BackColor = System.Drawing.Color.White;
-            this.ModelButton.Font = new System.Drawing.Font("Gulim", 10F);
+            this.ModelButton.Font = new System.Drawing.Font("Gulim", 9F);
             this.ModelButton.Location = new System.Drawing.Point(334, 57);
             this.ModelButton.Name = "ModelButton";
             this.ModelButton.Size = new System.Drawing.Size(110, 23);
@@ -551,7 +552,7 @@
             this.BackButton.TabIndex = 1;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = false;
-            this.BackButton.Click += new System.EventHandler(this.button1_Click);
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // CancelButton
             // 

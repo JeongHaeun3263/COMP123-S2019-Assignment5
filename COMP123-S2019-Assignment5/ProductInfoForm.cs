@@ -98,35 +98,39 @@ namespace COMP123_S2019_Assignment5
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Stream myStream;
-            //SaveFileDialog ProductOpenFileDialog = new OpenFileDialog();
+            OpenFileDialog ProductOpenFileDialog = new OpenFileDialog();
 
-            //// configure the file dialog
-            //ProductOpenFileDialog.FileName = "Product.txt";
-            //ProductOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            //ProductOpenFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
+            // configure the file dialog
+            ProductOpenFileDialog.FileName = "Product.txt";
+            ProductOpenFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            ProductOpenFileDialog.Filter = "Text files (*.txt)|*.txt| All Files (*.*)|*.*";
 
-            //// open the file dialog
-            //var result = ProductOpenFileDialog.ShowDialog();
-            //if (result != DialogResult.Cancel)
-            //{
-            //    try
-            //    {
-            //        using (StreamReader inputString = new StreamReader(
-            //                       File.Open(ProductOpenFileDialog.FileName, FileMode.Open)))
-            //        {
-            //            //inputString.ReadLine(character.Identity.FirstName);
-            //        }
-            //    }
-            //    catch (IOException exception)
-            //    {
-            //        Debug.WriteLine("ERROR: " + exception.Message);
-            //    }
-            //}
+            // open the file dialog
+            var result = ProductOpenFileDialog.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                try
+                {
+                    using (StreamReader inputStream = new StreamReader(
+                                   File.Open(ProductOpenFileDialog.FileName, FileMode.Open)))
+                    {
+                        //ProductIDButton.Text = inputStream.ReadLine(cells[0].Value.ToString());
+                    }
+                }
+                catch (IOException exception)
+                {
+                    Debug.WriteLine("ERROR: " + exception.Message);
+                }
+            }
         }
 
+        /// <summary>
+        /// This is event handler that create txt file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Stream myStream;
             SaveFileDialog ProductSaveFileDialog = new SaveFileDialog();
 
             // configure the file dialog
@@ -143,8 +147,23 @@ namespace COMP123_S2019_Assignment5
                     using (StreamWriter outputString = new StreamWriter(
                File.Open("Product.txt", FileMode.Create)))
                     {
-                        outputString.WriteLine(Program.product.productID.ToString());
-                        outputString.WriteLine(Program.product.cost);
+                        outputString.WriteLine("Product ID: " + cells[0].Value.ToString());
+                        outputString.WriteLine("Condition: " + cells[14].Value.ToString());
+                        outputString.WriteLine("Cost: " + cells[1].Value.ToString());
+                        outputString.WriteLine("Platform: " + cells[16].Value.ToString());
+                        outputString.WriteLine("OS: " + cells[15].Value.ToString());
+                        outputString.WriteLine("Manufacturer: " + cells[2].Value.ToString());
+                        outputString.WriteLine("Model: " + cells[2].Value.ToString());
+                        outputString.WriteLine("Memory: " + cells[5].Value.ToString());
+                        outputString.WriteLine("LCD Size: " + cells[7].Value.ToString());
+                        outputString.WriteLine("HDD: " + cells[17].Value.ToString());
+                        outputString.WriteLine("CPU Brand: " + cells[10].Value.ToString());
+                        outputString.WriteLine("CPUNumber: " + cells[12].Value.ToString());
+                        outputString.WriteLine("GPUType: " + cells[19].Value.ToString());
+                        outputString.WriteLine("CPUType: " + cells[11].Value.ToString());
+                        outputString.WriteLine("CPUSpeed: " + cells[13].Value.ToString());
+                        outputString.WriteLine("WebCam: " + cells[30].Value.ToString());
+
                         outputString.Close();
                         outputString.Dispose();
                     }

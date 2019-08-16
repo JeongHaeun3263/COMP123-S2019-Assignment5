@@ -114,7 +114,7 @@ namespace COMP123_S2019_Assignment5
                     using (StreamReader inputStream = new StreamReader(
                                    File.Open(ProductOpenFileDialog.FileName, FileMode.Open)))
                     {
-                        //ProductIDButton.Text = inputStream.ReadLine(cells[0].Value.ToString());
+                       //ProductIDButton.Text = inputStream(cells[0].Value.ToString());
                     }
                 }
                 catch (IOException exception)
